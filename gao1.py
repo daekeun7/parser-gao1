@@ -69,8 +69,10 @@ with tab1:
                     st.write(f"- 원문링크 : {link}")
                     st.write(f"- Title (English) : {title}")
                     st.write(f"- 제목 (한국어) : {translate_text(title)}")                    
-                    st.write(f"- Description (English) :\n{description}")
-                    st.write(f"- 설명 (한국어) :\n{translate_text(description)}")
+                    st.write(f"- Description (English) :")
+                    st.write(f"{description}")
+                    st.write(f"- 설명 (한국어) :")
+                    st.write(f"{translate_text(description)}")
                     st.write("-" * 20)
             
             except requests.exceptions.RequestException as e:
