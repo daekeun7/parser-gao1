@@ -85,9 +85,6 @@ import streamlit as st
 # Streamlit 앱 제목
 st.title("GAO Parser")
 
-# 텍스트 입력 필드 생성
-url = st.text_input("Enter URL:", "")
-
 def gkim(url):    
     try:
         response = requests.get(url)
@@ -116,6 +113,9 @@ def gkim(url):
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
+
+# 텍스트 입력 필드 생성
+url = st.text_input("Enter URL:", "")
 
 if url:
     # 입력된 텍스트를 화면에 출력
