@@ -57,16 +57,15 @@ with tab1:
                 
                 soup = BeautifulSoup(response.content, 'xml') 
 
-                channels = soup.find_all('channel')                
-                
+                channels = soup.find_all('channel')                                
                 for channel in channels:
                     lastBuildDate = channel.find('lastBuildDate').text.strip()
-                    st.write("LastBuildDate : ", lastBuildDate)
+                    st.write("Last build date : ", lastBuildDate)
+                    
                 st.write("Feed URL : ", url)                       
                 st.write("-" * 20)               
                            
-                items = soup.find_all('item')                
-            
+                items = soup.find_all('item')            
                 for item in items:
                     title = item.find('title').text.strip()
                     link = item.find('link').text.strip()
