@@ -131,16 +131,5 @@ with tab1:
 with tab2:
     st.write("Under construction")
 
-############################################################
-# for _ in range(50):
-#     st.write("This is some content. Scroll down to see the button.")
 
-# '위로 가기' 버튼을 HTML과 JavaScript로 구현
-st.markdown("""
-    <div style="position: fixed; bottom: 20px; right: 20px;">
-        <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" style="background-color: #4CAF50; color: white; border: none; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 5px; cursor: pointer;">
-            Go to Top
-        </button>
-    </div>
-    """, unsafe_allow_html=True)
 
