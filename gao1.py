@@ -60,7 +60,7 @@ with tab1:
                 channels = soup.find_all('channel')                
                 
                 for channel in channels:
-                    lastBuildDate = item.find('lastBuildDate').text.strip()
+                    lastBuildDate = channel.find('lastBuildDate').text.strip()
                     st.write("LastBuildDate : ", lastBuildDate)
                 st.write("Feed URL : ", url)                       
                 st.write("-" * 20)               
