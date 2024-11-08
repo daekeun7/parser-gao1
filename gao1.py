@@ -96,4 +96,99 @@ with tab1:
         st.write("done")
 with tab2:
     st.write("Under construction")
+    def extract_article_links(url):
+    """
+    Extracts article links from a given URL.
+    """
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Raise an exception for bad status codes
+
+        soup = BeautifulSoup(response.content, 'html.parser')
+        articles = soup.find_all('article')  # Find all article elements
+        article_data = []
+        for article in articles:
+          links = article.find_all('a', href=True)
+          for link in links:
+            article_data.append({
+              'text': link.text.strip(),
+              'href': link['href']
+            })
+        return article_data
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching URL: {e}")
+        return []
+
+
+def extract_article_content(url):
+    """
+    Extracts title, caption and content from an article URL.
+    """
+
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.content, 'html.parser')
+
+        title = soup.find('h1', class_='banner__title')
+        caption = soup.find('div', class_='banner__caption')
+        published_time = soup.find('time', class_='published')
+        content_div = soup.find('div', class_='content-col article__main-content')
+
+        if content_div:
+          content = content_div.get_text(separator=' ', strip=True)
+
+          # 5. "Downloads", "Video summary" 삭제
+          content = content.split("Downloads")[0] if "Downloads" in content else content
+          content = content.split("Video summary")[0] if "Video summary" in content else content
+
+          # 6. "Jump to downloads" 삭제
+          content = content.replace("Jump to downloads", "")
+
+          # 7. 특정 문자열 교체
+          content = content.replace("Background to the report", "\nBackground to the report : ")
+          content = content.replace("Scope of the report", "\nScope of the report : ")
+          content = content.replace("Conclusions", "\nConclusions : ")
+        else:
+          content = None
+
+
+        return {
+            'title': title.text.strip() if title else None,
+            'caption': caption.text.strip() if caption else None,
+            'published_time': published_time.text.strip() if published_time else None,
+            'content': content
+            }
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching URL: {e}")
+        return None
+    except AttributeError as e:
+      print(f"Error parsing HTML: {e}")
+      return None
+
+    if __name__ == "__main__":
+    target_url = "https://www.nao.org.uk/?post_type=report&s" # Replace with the actual URL
+    translator = Translator()
+
+    article_links = extract_article_links(target_url)
+    for article in article_links:
+      print(f"Article Text: {article['text']}")
+      print(f"Article Link: {article['href']}")
+
+      article_content = extract_article_content(article['href'])
+      if article_content:
+          title_translation = translator.translate(article_content['title'], dest='ko')
+          content_translation = translator.translate(article_content['content'], dest='ko')
+
+          print(f"  Title: {article_content['title']}")
+          print(f"  Title(ko): {title_translation.text}")
+          print(f"  Caption: {article_content['caption']}")
+          print(f"  Published Time: {article_content['published_time']}")
+          print(f"  Content: {article_content['content']}")
+          print(f"  Content(ko): {content_translation.text}")
+          print("-" * 20)    
+
+
 
