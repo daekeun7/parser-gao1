@@ -66,7 +66,7 @@ with tab1:
                     # Replace tabs with spaces in the description
                     description = description.replace('\t', ' ')
             
-                    st.write(f"- 원문링크 : {link}")
+                    st.write(f"[원문링크] {link}")
                     st.write(f"- Title (English) : {title}")
                     st.write(f"- 제목 (한국어) : {translate_text(title)}")                    
                     st.write(f"- Description (English) :")
