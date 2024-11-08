@@ -86,4 +86,26 @@ with tab1:
 with tab2:
     st.write("Under construction")
 
-
+#############################
+st.markdown(
+    """
+    <style>
+    #top-button {
+        position: fixed;
+        bottom: 40px;
+        right: 40px;
+        padding: 10px 15px;
+        font-size: 14px;
+        color: white;
+        background-color: #007BFF;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+        z-index: 100;
+    }
+    </style>
+    <button id="top-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">위로 가기</button>
+    """,
+    unsafe_allow_html=True
+)
