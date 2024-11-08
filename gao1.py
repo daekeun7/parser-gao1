@@ -39,43 +39,43 @@ with tab1:
     # 콤보박스 생성
     url = st.selectbox("Select Feeds:", options)
     
-    # if st.button("Submit"):    
-    if url:
-        # 입력된 텍스트를 화면에 출력
-        st.write("You entered:", url)                       
-        st.write("-" * 20)
-        
-        try:
-            response = requests.get(url)
-            response.raise_for_status()  # 오류 발생 시 예외 발생
-        
-            soup = BeautifulSoup(response.content, 'xml')
-        
-            items = soup.find_all('item')
-        
-            for item in items:
-                title = item.find('title').text.strip()
-                link = item.find('link').text.strip()
-                description = item.find('description').text.strip()
-
-                # Replace tabs with spaces in the description
-                description = description.replace('\t', ' ')
-        
-                st.write(f"Title (English): {title}")
-                st.write(f"Title (Korean): {translate_text(title)}")
-                st.write(f"Link: {link}")
-                st.write(f"Description (English): {description}")
-                st.write(f"Description (Korean): {translate_text(description)}")
-                st.write("-" * 20)
-        
-        except requests.exceptions.RequestException as e:
-            st.write(f"Error fetching the URL: {e}")
-        except AttributeError as e:
-            st.write(f"Error parsing the XML: {e}")
-        except Exception as e:
-            st.write(f"An unexpected error occurred: {e}")
-
-    st.write("done")
+    if st.button("Submit"):    
+        if url:
+            # 입력된 텍스트를 화면에 출력
+            st.write("You entered:", url)                       
+            st.write("-" * 20)
+            
+            try:
+                response = requests.get(url)
+                response.raise_for_status()  # 오류 발생 시 예외 발생
+            
+                soup = BeautifulSoup(response.content, 'xml')
+            
+                items = soup.find_all('item')
+            
+                for item in items:
+                    title = item.find('title').text.strip()
+                    link = item.find('link').text.strip()
+                    description = item.find('description').text.strip()
+    
+                    # Replace tabs with spaces in the description
+                    description = description.replace('\t', ' ')
+            
+                    st.write(f"Title (English): {title}")
+                    st.write(f"Title (Korean): {translate_text(title)}")
+                    st.write(f"Link: {link}")
+                    st.write(f"Description (English): {description}")
+                    st.write(f"Description (Korean): {translate_text(description)}")
+                    st.write("-" * 20)
+            
+            except requests.exceptions.RequestException as e:
+                st.write(f"Error fetching the URL: {e}")
+            except AttributeError as e:
+                st.write(f"Error parsing the XML: {e}")
+            except Exception as e:
+                st.write(f"An unexpected error occurred: {e}")
+    
+        st.write("done")
 with tab2:
     st.write("Under construction")
 
