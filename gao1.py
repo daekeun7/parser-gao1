@@ -45,8 +45,7 @@ with tab1:
     url = options[selected_option]    
     
     if st.button("Submit"):    
-        if url:
-            
+        if url:            
             st.write("Selected feed : ", selected_option)
             # st.write("LastBuildDate : ", lastBuildDate)
             # st.write("Feed URL : ", url)                       
