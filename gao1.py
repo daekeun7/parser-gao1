@@ -7,70 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1pjrjX9s7We7wD_8s7vqfFYlP6-ybut1B
 """
 
-# !pip install googletrans==4.0.0-rc1
-# !pip install beautifulsoup4
-
-# # prompt: xml 페이지를 가져와서 파싱.
-# # '<image>'안에 '<title>' 가져와서 프린트 해줘
-# # '< lastBuildDate>'를 가져와서 프린트 해줘
-# # '<item>' 별 '<title>', '<link>', '<description>'을 가져와서 프린트 해줘
-# # '<title>'과 '<description>'은 영문으로 프린트 후 다음줄에 한글로 번역해서 프린트 해줘
-
-# import requests
-# from bs4 import BeautifulSoup
-# from googletrans import Translator
-
-# translator = Translator()
-
-# def parse_xml_and_translate(url):
-#     try:
-#         response = requests.get(url)
-#         response.raise_for_status()  # Raise an exception for bad status codes
-
-#         soup = BeautifulSoup(response.content, 'xml')
-
-#         # Extract image title
-#         image_title = soup.find('image').find('title').text
-#         print("Image Title (Original):", image_title)
-
-#         # Extract lastBuildDate
-#         last_build_date = soup.find('lastBuildDate').text
-#         print("\nLast Build Date:", last_build_date)
-
-
-#         # Extract and translate item details
-#         items = soup.find_all('item')
-#         for item in items:
-#             title = item.find('title').text
-#             link = item.find('link').text
-#             description = item.find('description').text
-
-#             print("\nItem Title (Original):", title)
-#             translated_title = translator.translate(title, dest='ko')
-#             print("Item Title (Korean):", translated_title.text)
-
-#             print("Item Link:", link)
-
-#             print("\nItem Description (Original):", description)
-#             translated_description = translator.translate(description, dest='ko')
-#             print("Item Description (Korean):", translated_description.text)
-
-
-#     except requests.exceptions.RequestException as e:
-#         print(f"An error occurred during the request: {e}")
-#     except AttributeError as e:
-#         print(f"An error occurred during parsing: {e}")
-#     except Exception as e:
-#         print(f"An unexpected error occurred: {e}")
-
-
-# # Example usage:
-# xml_url = "https://www.gao.gov/rss/reports.xml" # paste your xml url
-# parse_xml_and_translate(xml_url)
-
-# prompt: xml 페이지를 가져와서 파싱. '<item>' 별 '<title>', '<link>', '<description>'을 가져와서 프린트 해줘
-#  '<title>'과 '<description>'은 영문으로 프린트 후 다음줄에 한글로 번역해서 프린트 해줘
-
 import requests
 import streamlit as st
 from bs4 import BeautifulSoup
@@ -78,8 +14,14 @@ from googletrans import Translator
 
 def translate_text(text, target_language='ko'):
     translator = Translator()
-    translation = translator.translate(text, dest=target_language)
-    return translation.text
+    # Split the text into chunks (adjust chunk size as needed)
+    chunk_size = 4000  # Example chunk size
+    chunks = [text[i:i + chunk_size] for i in range(0, len(text), chunk_size)]
+    translated_chunks = []
+    for chunk in chunks:
+        translation = translator.translate(chunk, dest=target_language)
+        translated_chunks.append(translation.text)
+    return ''.join(translated_chunks)
 
 # Streamlit 앱 제목
 st.title("Parser")
@@ -94,10 +36,7 @@ with tab1:
     if st.button("Submit"):    
         if url:
             # 입력된 텍스트를 화면에 출력
-            st.write("You entered:", url)
-            
-            # url = input("XML 페이지 URL을 입력하세요: ")  # 사용자로부터 URL 입력 받기
-            # print("-" * 20)
+            st.write("You entered:", url)                       
             st.write("-" * 20)
             
             try:
@@ -112,6 +51,9 @@ with tab1:
                     title = item.find('title').text.strip()
                     link = item.find('link').text.strip()
                     description = item.find('description').text.strip()
+
+                    # Replace tabs with spaces in the description
+                    description = description.replace('\t', ' ')
             
                     st.write(f"Title (English): {title}")
                     st.write(f"Title (Korean): {translate_text(title)}")
