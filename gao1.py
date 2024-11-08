@@ -132,4 +132,12 @@ with tab2:
     st.write("Under construction")
 
 
-
+# '위로 가기' 버튼을 화면 오른쪽 아래에 고정하여 떠다니게 하기
+st.markdown("""
+    <div style="position: fixed; bottom: 20px; right: 20px;">
+        <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" 
+                style="background-color: #4CAF50; color: white; border: none; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 5px; cursor: pointer;">
+            ↑ Go to Top
+        </button>
+    </div>
+    """, unsafe_allow_html=True)
