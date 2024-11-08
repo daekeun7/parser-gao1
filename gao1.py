@@ -75,11 +75,13 @@ with tab1:
                     description = description.replace('\t', ' ')
             
                     st.write(f"[원문링크] {link}")
-                    st.write(f"- Title (English) : {title}")
-                    st.write(f"- 제목 (한국어) : {translate_text(title)}")                    
-                    st.write(f"- Description (English) :")
+                    st.write(f"- Title (English))
+                    st.write(f"{title}")
+                    st.write(f"- 제목 (한국어)")
+                    st.write(f"{translate_text(title)}")
+                    st.write(f"- Description (English)")
                     st.write(f"{description}")
-                    st.write(f"- 설명 (한국어) :")
+                    st.write(f"- 설명 (한국어)")
                     st.write(f"{translate_text(description)}")
                     st.write("-" * 20)
             
