@@ -83,7 +83,7 @@ def translate_text(text, target_language='ko'):
 
 # Streamlit 앱 제목
 st.title("Parser")
-st.markdown("<h2 style='font-size: 30px;'>Powered by Goo Kim at Digital Audit Research Team</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='font-size: 30px;'>Digital Audit Research Team @ BAI</h2>", unsafe_allow_html=True)
 
 tab1, tab2= st.tabs(['GAO' , 'NAO'])
 
@@ -127,7 +127,7 @@ with tab1:
             except Exception as e:
                 st.write(f"An unexpected error occurred: {e}")
 
-        st.write("eod")
+        st.write("done")
 with tab2:
     st.write("Under construction")
 
