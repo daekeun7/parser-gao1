@@ -41,7 +41,7 @@ with tab1:
     }
     
     # 콤보박스 생성
-    selected_option = st.selectbox("- Select Feed:", list(options.keys()))
+    selected_option = st.selectbox("▶ Select Feed:", list(options.keys()))
     url = options[selected_option]
     
     if st.button("Submit"):    
