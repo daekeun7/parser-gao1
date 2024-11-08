@@ -41,12 +41,13 @@ with tab1:
     }
     
     # 콤보박스 생성
-    selected_option = st.selectbox("Select Feeds:", list(options.keys()))
+    selected_option = st.selectbox("■ Select Feed:", list(options.keys()))
     url = options[selected_option]
     
     if st.button("Submit"):    
         if url:            
-            st.write("You entered:", selected_option)                       
+            st.write("■ Selected feed : ", selected_option)                       
+            st.write("■ URL : ", url)                       
             st.write("-" * 20)
             
             try:
