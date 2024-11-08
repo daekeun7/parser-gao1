@@ -86,7 +86,7 @@ import streamlit as st
 st.title("Streamlit Text Input Example")
 
 # 입력된 텍스트를 화면에 출력
-st.write("You entered:", user_input)
+st.write("You entered:", url)
 
 # 텍스트 입력 필드 생성
 url = st.text_input("Enter some text:", "")
