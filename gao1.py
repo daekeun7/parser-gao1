@@ -191,9 +191,9 @@ with tab2:
                       st.write(f"- 제목(한국어) : {title_translation.text}")                      
                       st.write(f"- Caption : {article_content['caption']}")                      
                       st.write(f"- Published Time : {article_content['published_time']}")
-                      st.write(f"- Content(English)")
+                      st.write(f"< Content(English) >")
                       st.write(f"{article_content['content']}")
-                      st.write(f"- 내용(한국어)")
+                      st.write(f"< 내용(한국어) >")
                       st.write(f"{content_translation.text}")
                       st.write("-" * 20)
         
