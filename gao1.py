@@ -80,6 +80,17 @@ def translate_text(text, target_language='ko'):
     translation = translator.translate(text, dest=target_language)
     return translation.text
 
+import streamlit as st
+
+# Streamlit 앱 제목
+st.title("Streamlit Text Input Example")
+
+# 텍스트 입력 필드 생성
+url = st.text_input("Enter some text:", "https://www.gao.gov/rss/reports.xml")
+
+# 입력된 텍스트를 화면에 출력
+st.write("You entered:", user_input)
+
 url = input("XML 페이지 URL을 입력하세요: ")  # 사용자로부터 URL 입력 받기
 print("-" * 20)
 
