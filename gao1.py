@@ -81,9 +81,10 @@ def translate_text(text, target_language='ko'):
     translation = translator.translate(text, dest=target_language)
     return translation.text
 
-
 # Streamlit 앱 제목
 st.title("Parser")
+
+tabs = st.radio("Select a tab:", ["Tab 1", "Tab 2"])
 
 if tabs == "GAO":
     # 텍스트 입력 필드 생성
