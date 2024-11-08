@@ -45,8 +45,10 @@ with tab1:
     url = options[selected_option]    
     
     if st.button("Submit"):    
-        if url:                        
-            st.write("Selected feed : ", selected_option)                       
+        if url:
+            lastBuildDate = item.find('lastBuildDate').text.strip()
+            st.write("Selected feed : ", selected_option)
+            st.write("LastBuildDate : ", lastBuildDate)
             st.write("Feed URL : ", url)                       
             st.write("-" * 20)
             
