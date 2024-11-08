@@ -110,19 +110,19 @@ if st.button("Submit"):
                 link = item.find('link').text.strip()
                 description = item.find('description').text.strip()
         
-                print(f"Title (English): {title}")
-                print(f"Title (Korean): {translate_text(title)}")
-                print(f"Link: {link}")
-                print(f"Description (English): {description}")
-                print(f"Description (Korean): {translate_text(description)}")
-                print("-" * 20)
+                st.write(f"Title (English): {title}")
+                st.write(f"Title (Korean): {translate_text(title)}")
+                st.write(f"Link: {link}")
+                st.write(f"Description (English): {description}")
+                st.write(f"Description (Korean): {translate_text(description)}")
+                st.write("-" * 20)
         
         except requests.exceptions.RequestException as e:
-            print(f"Error fetching the URL: {e}")
+            st.write(f"Error fetching the URL: {e}")
         except AttributeError as e:
-            print(f"Error parsing the XML: {e}")
+            st.write(f"Error parsing the XML: {e}")
         except Exception as e:
-            print(f"An unexpected error occurred: {e}")
+            st.write(f"An unexpected error occurred: {e}")
 
 
 
