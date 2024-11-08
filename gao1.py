@@ -30,19 +30,23 @@ st.markdown("<h2 style='font-size: 30px;'>Goo Kim at Digital Audit Research Team
 tab1, tab2= st.tabs(['GAO' , 'NAO'])
 
 with tab1:
-    # 텍스트 입력 필드 생성
-    # url = st.text_input("Enter URL:", "")
-
     # 콤보박스 옵션 목록
-    options = ['https://www.gao.gov/rss/reports.xml', 'https://www.gao.gov/rss/reports-450.xml', 'https://www.gao.gov/rss/reports_majrule.xml']
+    # options = ['https://www.gao.gov/rss/reports.xml', 'https://www.gao.gov/rss/reports-450.xml', 'https://www.gao.gov/rss/reports_majrule.xml']
+    # options = ['GAO Reports', 'GAO Reports-Brief', 'GAO Legal Products', 'GAO Legal Products-Reports on Federal Agency Major Rules']
+    options = {
+        'GAO Reports': 'https://www.gao.gov/rss/reports.xml',
+        'GAO Reports-Brief': 'https://www.gao.gov/rss/reports-450.xml',
+        'GAO Legal Products': 'https://www.gao.gov/rss/reportslegal.xml',
+        'GAO Legal Products-Reports on Federal Agency Major Rules': 'https://www.gao.gov/rss/reports_majrule.xml'
+    }
     
     # 콤보박스 생성
-    url = st.selectbox("Select Feeds:", options)
+    selected_option = st.selectbox("Select Feeds:", list(options.keys()))
+    url = options[selected_option]
     
     if st.button("Submit"):    
-        if url:
-            # 입력된 텍스트를 화면에 출력
-            st.write("You entered:", url)                       
+        if url:            
+            st.write("You entered:", selected_option)                       
             st.write("-" * 20)
             
             try:
