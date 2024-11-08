@@ -87,25 +87,59 @@ with tab2:
     st.write("Under construction")
 
 #############################
-st.markdown(
+st.write("# Streamlit 예제 페이지")
+st.write("스크롤을 내리면 '위로 가기' 버튼이 오른쪽 하단에 떠다니게 됩니다. 버튼을 클릭하면 페이지 상단으로 이동합니다.")
+
+# 예시 텍스트
+for _ in range(20):
+    st.write("스크롤을 내려보세요. 많은 텍스트가 있습니다.")
+
+# HTML과 CSS, JavaScript를 이용하여 "위로 가기" 버튼 생성
+st.components.v1.html(
     """
     <style>
+    /* "위로 가기" 버튼 스타일 */
     #top-button {
+        display: none; /* 초기에는 숨김 */
         position: fixed;
-        bottom: 40px;
-        right: 40px;
-        padding: 10px 15px;
-        font-size: 14px;
-        color: white;
-        background-color: #007BFF;
+        bottom: 30px;
+        right: 30px;
+        z-index: 99;
+        font-size: 16px;
         border: none;
-        border-radius: 5px;
+        outline: none;
+        background-color: #4CAF50;
+        color: white;
         cursor: pointer;
-        box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
-        z-index: 100;
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    #top-button:hover {
+        background-color: #555;
     }
     </style>
-    <button id="top-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">위로 가기</button>
+
+    <button onclick="topFunction()" id="top-button" title="Go to top">위로 가기</button>
+
+    <script>
+    // 스크롤 이벤트 리스너: 일정 길이 이상 스크롤 시 버튼 표시
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            document.getElementById("top-button").style.display = "block";
+        } else {
+            document.getElementById("top-button").style.display = "none";
+        }
+    }
+
+    // "위로 가기" 버튼 클릭 시 최상단으로 이동
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
     """,
-    unsafe_allow_html=True
+    height=0,
 )
