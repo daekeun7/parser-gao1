@@ -46,19 +46,23 @@ with tab1:
     
     if st.button("Submit"):    
         if url:
-            lastBuildDate = item.find('lastBuildDate').text.strip()
+            
             st.write("Selected feed : ", selected_option)
-            st.write("LastBuildDate : ", lastBuildDate)
-            st.write("Feed URL : ", url)                       
-            st.write("-" * 20)
+            # st.write("LastBuildDate : ", lastBuildDate)
+            # st.write("Feed URL : ", url)                       
+            # st.write("-" * 20)
             
             try:
                 response = requests.get(url)
                 response.raise_for_status()  # 오류 발생 시 예외 발생
             
-                soup = BeautifulSoup(response.content, 'xml')
-            
+                soup = BeautifulSoup(response.content, 'xml')            
                 items = soup.find_all('item')
+
+                lastBuildDate = item.find('lastBuildDate').text.strip()
+                st.write("LastBuildDate : ", lastBuildDate)
+                st.write("Feed URL : ", url)                       
+                st.write("-" * 20)
             
                 for item in items:
                     title = item.find('title').text.strip()
