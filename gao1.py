@@ -67,9 +67,9 @@ def extract_article_content(url):
           content = content.replace("Jump to downloads", "")
 
           # 7. 특정 문자열 교체
-          content = content.replace("Background to the report", "\n - Background to the report : ")
-          content = content.replace("Scope of the report", "\n - Scope of the report : ")
-          content = content.replace("Conclusions", "\n - Conclusions : ")
+          content = content.replace("Background to the report", "\n → Background to the report : ")
+          content = content.replace("Scope of the report", "\n → Scope of the report : ")
+          content = content.replace("Conclusions", "\n → Conclusions : ")
         else:
           content = None
 
@@ -187,10 +187,8 @@ with tab2:
                       title_translation = translator.translate(article_content['title'], dest='ko')
                       content_translation = translator.translate(article_content['content'], dest='ko')
             
-                      st.write(f"- Title(English)")
-                      st.write(f"{article_content['title']}")
-                      st.write(f"- 제목(한국어)")
-                      st.write(f"{title_translation.text}")                      
+                      st.write(f"- Title(English) : {article_content['title']}")
+                      st.write(f"- 제목(한국어) : {title_translation.text}")                      
                       st.write(f"- Caption : {article_content['caption']}")                      
                       st.write(f"- Published Time : {article_content['published_time']}")
                       st.write(f"- Content(English)")
