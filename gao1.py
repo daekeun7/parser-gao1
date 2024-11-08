@@ -114,15 +114,11 @@ with tab2:
             return article_data
     
         except requests.exceptions.RequestException as e:
-            print(f"Error fetching URL: {e}")
+            st.write(f"Error fetching URL: {e}")
             return []
 
 
 def extract_article_content(url):
-    """
-    Extracts title, caption and content from an article URL.
-    """
-
     try:
         response = requests.get(url)
         response.raise_for_status()
@@ -150,7 +146,6 @@ def extract_article_content(url):
         else:
           content = None
 
-
         return {
             'title': title.text.strip() if title else None,
             'caption': caption.text.strip() if caption else None,
@@ -159,10 +154,10 @@ def extract_article_content(url):
             }
 
     except requests.exceptions.RequestException as e:
-        print(f"Error fetching URL: {e}")
+        st.write(f"Error fetching URL: {e}")
         return None
     except AttributeError as e:
-      print(f"Error parsing HTML: {e}")
+      st.write(f"Error parsing HTML: {e}")
       return None
 
 
@@ -172,18 +167,18 @@ if __name__ == "__main__":
 
     article_links = extract_article_links(target_url)
     for article in article_links:
-      print(f"Article Text: {article['text']}")
-      print(f"Article Link: {article['href']}")
+      st.write(f"Article Text: {article['text']}")
+      st.write(f"Article Link: {article['href']}")
 
       article_content = extract_article_content(article['href'])
       if article_content:
           title_translation = translator.translate(article_content['title'], dest='ko')
           content_translation = translator.translate(article_content['content'], dest='ko')
 
-          print(f"  Title: {article_content['title']}")
-          print(f"  Title(ko): {title_translation.text}")
-          print(f"  Caption: {article_content['caption']}")
-          print(f"  Published Time: {article_content['published_time']}")
-          print(f"  Content: {article_content['content']}")
-          print(f"  Content(ko): {content_translation.text}")
-          print("-" * 20)
+          st.write(f"  Title: {article_content['title']}")
+          st.write(f"  Title(ko): {title_translation.text}")
+          st.write(f"  Caption: {article_content['caption']}")
+          st.write(f"  Published Time: {article_content['published_time']}")
+          st.write(f"  Content: {article_content['content']}")
+          st.write(f"  Content(ko): {content_translation.text}")
+          st.write("-" * 20)
