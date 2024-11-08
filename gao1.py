@@ -96,29 +96,26 @@ with tab1:
         st.write("done")
 with tab2:
     st.write("Under construction")
-    def extract_article_links(url):
-    """
-    Extracts article links from a given URL.
-    """
-    try:
-        response = requests.get(url)
-        response.raise_for_status()  # Raise an exception for bad status codes
-
-        soup = BeautifulSoup(response.content, 'html.parser')
-        articles = soup.find_all('article')  # Find all article elements
-        article_data = []
-        for article in articles:
-          links = article.find_all('a', href=True)
-          for link in links:
-            article_data.append({
-              'text': link.text.strip(),
-              'href': link['href']
-            })
-        return article_data
-
-    except requests.exceptions.RequestException as e:
-        print(f"Error fetching URL: {e}")
-        return []
+    def extract_article_links(url):    
+        try:
+            response = requests.get(url)
+            response.raise_for_status()  # Raise an exception for bad status codes
+    
+            soup = BeautifulSoup(response.content, 'html.parser')
+            articles = soup.find_all('article')  # Find all article elements
+            article_data = []
+            for article in articles:
+              links = article.find_all('a', href=True)
+              for link in links:
+                article_data.append({
+                  'text': link.text.strip(),
+                  'href': link['href']
+                })
+            return article_data
+    
+        except requests.exceptions.RequestException as e:
+            print(f"Error fetching URL: {e}")
+            return []
 
 
 def extract_article_content(url):
