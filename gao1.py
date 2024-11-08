@@ -25,7 +25,7 @@ def translate_text(text, target_language='ko'):
 
 # Streamlit 앱 제목
 st.title("Parser")
-st.markdown("<h2 style='font-size: 30px;'>Goo Kim at Digital Audit Research Team</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='font-size: 20px;'>Powered by Goo Kim @ Digital Audit Research Team</h2>", unsafe_allow_html=True)
 
 tab1, tab2= st.tabs(['GAO' , 'NAO'])
 
@@ -48,7 +48,7 @@ with tab1:
         if url:                        
             st.write("Selected feed : ", selected_option)                       
             st.write("Feed URL : ", url)                       
-            st.write("""<hr style="height:3px;border:none;color:#333;background-color:#333;" />""", unsafe_allow_html=True)
+            st.write("-" * 20)
             
             try:
                 response = requests.get(url)
