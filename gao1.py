@@ -7,8 +7,8 @@ Original file is located at
     https://colab.research.google.com/drive/1pjrjX9s7We7wD_8s7vqfFYlP6-ybut1B
 """
 
-!pip install googletrans==4.0.0-rc1
-!pip install beautifulsoup4
+# !pip install googletrans==4.0.0-rc1
+# !pip install beautifulsoup4
 
 # # prompt: xml 페이지를 가져와서 파싱.
 # # '<image>'안에 '<title>' 가져와서 프린트 해줘
