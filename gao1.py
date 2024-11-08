@@ -67,9 +67,9 @@ def extract_article_content(url):
           content = content.replace("Jump to downloads", "")
 
           # 7. 특정 문자열 교체
-          content = content.replace("Background to the report", "\nBackground to the report : ")
-          content = content.replace("Scope of the report", "\nScope of the report : ")
-          content = content.replace("Conclusions", "\nConclusions : ")
+          content = content.replace("Background to the report", "\n- Background to the report : ")
+          content = content.replace("Scope of the report", "\n- Scope of the report : ")
+          content = content.replace("Conclusions", "\n- Conclusions : ")
         else:
           content = None
 
