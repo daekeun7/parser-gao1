@@ -58,8 +58,9 @@ with tab1:
                 soup = BeautifulSoup(response.content, 'xml')            
                 items = soup.find_all('item')
 
-                lastBuildDate = item.find('lastBuildDate').text.strip()
-                st.write("LastBuildDate : ", lastBuildDate)
+                for item in items:
+                    lastBuildDate = item.find('lastBuildDate').text.strip()
+                    st.write("LastBuildDate : ", lastBuildDate)
                 st.write("Feed URL : ", url)                       
                 st.write("-" * 20)
             
