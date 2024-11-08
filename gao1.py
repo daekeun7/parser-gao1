@@ -89,7 +89,7 @@ def extract_article_content(url):
 ###########################################################################
 # Streamlit 앱 제목
 st.title("Parser")
-st.markdown("<h2 style='font-size: 20px;'>Goo Kim @ the Digital Audit Research Team</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='font-size: 20px;'>Goo Kim @ Digital Audit Research Team</h2>", unsafe_allow_html=True)
 
 # tab1, tab2= st.tabs(['Government Accountability Office', 'National Audit Office'])
 tab1, tab2= st.tabs(['GAO', 'NAO'])
