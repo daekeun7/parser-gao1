@@ -83,6 +83,7 @@ def translate_text(text, target_language='ko'):
 
 # Streamlit 앱 제목
 st.title("Parser")
+st.markdown("<h2 style='font-size: 30px;'>Powered by Goo Kim at Digital Audit Research Team</h2>", unsafe_allow_html=True)
 
 tab1, tab2= st.tabs(['GAO' , 'NAO'])
 
