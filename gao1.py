@@ -88,35 +88,35 @@ st.title("GAO Parser")
 # 텍스트 입력 필드 생성
 url = st.text_input("Enter URL:", "")
 
-if url:
-    # 입력된 텍스트를 화면에 출력
-    st.write("You entered:", url)
-    
-    # url = input("XML 페이지 URL을 입력하세요: ")  # 사용자로부터 URL 입력 받기
-    print("-" * 20)    
-    try:
-        response = requests.get(url)
-        response.raise_for_status()  # 오류 발생 시 예외 발생
-    
-        soup = BeautifulSoup(response.content, 'xml')
-    
-        items = soup.find_all('item')
-    
-        for item in items:
-            title = item.find('title').text.strip()
-            link = item.find('link').text.strip()
-            description = item.find('description').text.strip()
-    
-            print(f"Title (English): {title}")
-            print(f"Title (Korean): {translate_text(title)}")
-            print(f"Link: {link}")
-            print(f"Description (English): {description}")
-            print(f"Description (Korean): {translate_text(description)}")
-            print("-" * 20)
-    
-    except requests.exceptions.RequestException as e:
-        print(f"Error fetching the URL: {e}")
-        except AttributeError as e:
-            print(f"Error parsing the XML: {e}")
-        except Exception as e:
-            print(f"An unexpected error occurred: {e}")
+
+# 입력된 텍스트를 화면에 출력
+st.write("You entered:", url)
+
+# url = input("XML 페이지 URL을 입력하세요: ")  # 사용자로부터 URL 입력 받기
+print("-" * 20)    
+try:
+    response = requests.get(url)
+    response.raise_for_status()  # 오류 발생 시 예외 발생
+
+    soup = BeautifulSoup(response.content, 'xml')
+
+    items = soup.find_all('item')
+
+    for item in items:
+        title = item.find('title').text.strip()
+        link = item.find('link').text.strip()
+        description = item.find('description').text.strip()
+
+        print(f"Title (English): {title}")
+        print(f"Title (Korean): {translate_text(title)}")
+        print(f"Link: {link}")
+        print(f"Description (English): {description}")
+        print(f"Description (Korean): {translate_text(description)}")
+        print("-" * 20)
+
+except requests.exceptions.RequestException as e:
+    print(f"Error fetching the URL: {e}")
+    except AttributeError as e:
+        print(f"Error parsing the XML: {e}")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
