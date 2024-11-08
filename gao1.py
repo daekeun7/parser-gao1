@@ -41,7 +41,7 @@ with tab1:
     }
     
     # 콤보박스 생성
-    selected_option = st.selectbox("▶ Select Feed:", list(options.keys()))
+    selected_option = st.selectbox("Select Feed:", list(options.keys()))
     url = options[selected_option]
     
     if st.button("Submit"):    
@@ -66,11 +66,11 @@ with tab1:
                     # Replace tabs with spaces in the description
                     description = description.replace('\t', ' ')
             
-                    st.write(f"Title (English): {title}")
-                    st.write(f"Title (Korean): {translate_text(title)}")
-                    st.write(f"Link: {link}")
-                    st.write(f"Description (English): {description}")
-                    st.write(f"Description (Korean): {translate_text(description)}")
+                    st.write(f"- Title (English): {title}")
+                    st.write(f"- Title (Korean): {translate_text(title)}")
+                    st.write(f"- Link: {link}")
+                    st.write(f"- Description (English): {description}")
+                    st.write(f"- Description (Korean): {translate_text(description)}")
                     st.write("-" * 20)
             
             except requests.exceptions.RequestException as e:
