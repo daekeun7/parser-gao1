@@ -85,11 +85,11 @@ import streamlit as st
 # Streamlit 앱 제목
 st.title("Streamlit Text Input Example")
 
-# 입력된 텍스트를 화면에 출력
-st.write("You entered:", url)
-
 # 텍스트 입력 필드 생성
 url = st.text_input("Enter some text:", "")
+
+# 입력된 텍스트를 화면에 출력
+st.write("You entered:", url)
 
 # url = input("XML 페이지 URL을 입력하세요: ")  # 사용자로부터 URL 입력 받기
 print("-" * 20)
