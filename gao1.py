@@ -48,10 +48,7 @@ with tab1:
         if url:                        
             st.write("Selected feed : ", selected_option)                       
             st.write("Feed URL : ", url)                       
-            st.write("""
-    <hr style="height:3px;border:none;color:#333;background-color:#333;" />
-    """, 
-    unsafe_allow_html=True)
+            st.write("""<hr style="height:3px;border:none;color:#333;background-color:#333;" />""", unsafe_allow_html=True)
             
             try:
                 response = requests.get(url)
