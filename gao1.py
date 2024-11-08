@@ -72,6 +72,7 @@ Original file is located at
 #  '<title>'과 '<description>'은 영문으로 프린트 후 다음줄에 한글로 번역해서 프린트 해줘
 
 import requests
+import streamlit as st
 from bs4 import BeautifulSoup
 from googletrans import Translator
 
@@ -80,12 +81,20 @@ def translate_text(text, target_language='ko'):
     translation = translator.translate(text, dest=target_language)
     return translation.text
 
-import streamlit as st
 
 # Streamlit 앱 제목
 st.title("GAO Parser")
 
-def gkim(url):    
+# 텍스트 입력 필드 생성
+url = st.text_input("Enter URL:", "")
+
+if url:
+    # 입력된 텍스트를 화면에 출력
+    st.write("You entered:", url)
+    
+    # url = input("XML 페이지 URL을 입력하세요: ")  # 사용자로부터 URL 입력 받기
+    print("-" * 20)
+    
     try:
         response = requests.get(url)
         response.raise_for_status()  # 오류 발생 시 예외 발생
@@ -114,13 +123,4 @@ def gkim(url):
         print(f"An unexpected error occurred: {e}")
 
 
-# 텍스트 입력 필드 생성
-url = st.text_input("Enter URL:", "")
 
-if url:
-    # 입력된 텍스트를 화면에 출력
-    st.write("You entered:", url)
-    
-    # url = input("XML 페이지 URL을 입력하세요: ")  # 사용자로부터 URL 입력 받기
-    print("-" * 20)
-    gkim(url)
