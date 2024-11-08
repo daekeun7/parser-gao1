@@ -9,6 +9,7 @@ Original file is located at
 
 import requests
 import streamlit as st
+import streamlit as st2
 from bs4 import BeautifulSoup
 from googletrans import Translator
 
@@ -160,14 +161,14 @@ with tab2:
     # 콤보박스 옵션 목록    
     options2 = {
         'Selected filters : Reports': 'https://www.nao.org.uk/?post_type=report&s=',       
-        'Selected filters : Reports': 'https://www.nao.org.uk/?post_type=report&s='       
+        'Selected filters2 : Reports': 'https://www.nao.org.uk/?post_type=report&s=2'       
     }
     
     # 콤보박스 생성
-    selected_option2 = st.selectbox("Select :", list(options2.keys()))
+    selected_option2 = st2.selectbox("Select :", list(options2.keys()))
     url2 = options2[selected_option2] 
 
-    if st.button2("Submit"):    
+    if st2.button("Submit2"):    
         if url2:            
             st.write("Selected filter : ", selected_option2)       
     
