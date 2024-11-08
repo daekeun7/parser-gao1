@@ -25,51 +25,57 @@ def translate_text(text, target_language='ko'):
 
 # Streamlit 앱 제목
 st.title("Parser")
-st.markdown("<h2 style='font-size: 30px;'>Digital Audit Research Team @ BAI</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='font-size: 30px;'>Goo Kim at Digital Audit Research Team</h2>", unsafe_allow_html=True)
 
 tab1, tab2= st.tabs(['GAO' , 'NAO'])
 
 with tab1:
     # 텍스트 입력 필드 생성
-    url = st.text_input("Enter URL:", "")
+    # url = st.text_input("Enter URL:", "")
+
+    # 콤보박스 옵션 목록
+    options = ['https://www.gao.gov/rss/reports.xml', 'https://www.gao.gov/rss/reports-450.xml', 'https://www.gao.gov/rss/reports_majrule.xml']
     
-    if st.button("Submit"):    
-        if url:
-            # 입력된 텍스트를 화면에 출력
-            st.write("You entered:", url)                       
-            st.write("-" * 20)
-            
-            try:
-                response = requests.get(url)
-                response.raise_for_status()  # 오류 발생 시 예외 발생
-            
-                soup = BeautifulSoup(response.content, 'xml')
-            
-                items = soup.find_all('item')
-            
-                for item in items:
-                    title = item.find('title').text.strip()
-                    link = item.find('link').text.strip()
-                    description = item.find('description').text.strip()
+    # 콤보박스 생성
+    url = st.selectbox("Select Feeds:", options)
+    
+    # if st.button("Submit"):    
+    if url:
+        # 입력된 텍스트를 화면에 출력
+        st.write("You entered:", url)                       
+        st.write("-" * 20)
+        
+        try:
+            response = requests.get(url)
+            response.raise_for_status()  # 오류 발생 시 예외 발생
+        
+            soup = BeautifulSoup(response.content, 'xml')
+        
+            items = soup.find_all('item')
+        
+            for item in items:
+                title = item.find('title').text.strip()
+                link = item.find('link').text.strip()
+                description = item.find('description').text.strip()
 
-                    # Replace tabs with spaces in the description
-                    description = description.replace('\t', ' ')
-            
-                    st.write(f"Title (English): {title}")
-                    st.write(f"Title (Korean): {translate_text(title)}")
-                    st.write(f"Link: {link}")
-                    st.write(f"Description (English): {description}")
-                    st.write(f"Description (Korean): {translate_text(description)}")
-                    st.write("-" * 20)
-            
-            except requests.exceptions.RequestException as e:
-                st.write(f"Error fetching the URL: {e}")
-            except AttributeError as e:
-                st.write(f"Error parsing the XML: {e}")
-            except Exception as e:
-                st.write(f"An unexpected error occurred: {e}")
+                # Replace tabs with spaces in the description
+                description = description.replace('\t', ' ')
+        
+                st.write(f"Title (English): {title}")
+                st.write(f"Title (Korean): {translate_text(title)}")
+                st.write(f"Link: {link}")
+                st.write(f"Description (English): {description}")
+                st.write(f"Description (Korean): {translate_text(description)}")
+                st.write("-" * 20)
+        
+        except requests.exceptions.RequestException as e:
+            st.write(f"Error fetching the URL: {e}")
+        except AttributeError as e:
+            st.write(f"Error parsing the XML: {e}")
+        except Exception as e:
+            st.write(f"An unexpected error occurred: {e}")
 
-        st.write("done")
+    st.write("done")
 with tab2:
     st.write("Under construction")
 
