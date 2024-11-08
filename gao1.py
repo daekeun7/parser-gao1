@@ -27,7 +27,7 @@ def translate_text(text, target_language='ko'):
 st.title("Parser")
 st.markdown("<h2 style='font-size: 20px;'>Powered by Goo Kim @ Digital Audit Research Team</h2>", unsafe_allow_html=True)
 
-tab1, tab2= st.tabs(['GAO' , 'NAO'])
+tab1, tab2= st.tabs(['Government Accountability Office' , 'National Audit Office'])
 
 with tab1:
     # 콤보박스 옵션 목록
@@ -37,11 +37,12 @@ with tab1:
         'GAO Reports': 'https://www.gao.gov/rss/reports.xml',
         'GAO Reports-Brief': 'https://www.gao.gov/rss/reports-450.xml',
         'GAO Legal Products': 'https://www.gao.gov/rss/reportslegal.xml',
-        'GAO Legal Products-Reports on Federal Agency Major Rules': 'https://www.gao.gov/rss/reports_majrule.xml'
+        'GAO Legal Products-Reports on Federal Agency Major Rules': 'https://www.gao.gov/rss/reports_majrule.xml',
+        'GAO Press Releases': 'https://www.gao.gov/rss/press.xml'
     }
     
     # 콤보박스 생성
-    selected_option = st.selectbox("Select Feed:", list(options.keys()))
+    selected_option = st.selectbox("Select Feed :", list(options.keys()))
     url = options[selected_option]    
     
     if st.button("Submit"):    
