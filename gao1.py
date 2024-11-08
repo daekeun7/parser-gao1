@@ -83,10 +83,10 @@ def translate_text(text, target_language='ko'):
 import streamlit as st
 
 # Streamlit 앱 제목
-st.title("Streamlit Text Input Example")
+st.title("GAO Parser")
 
 # 텍스트 입력 필드 생성
-url = st.text_input("Enter some text:", "")
+url = st.text_input("Enter URL:", "")
 
 if url:
     # 입력된 텍스트를 화면에 출력
