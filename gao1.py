@@ -132,8 +132,8 @@ with tab2:
     st.write("Under construction")
 
 ############################################################
-for _ in range(50):
-    st.write("This is some content. Scroll down to see the button.")
+# for _ in range(50):
+#     st.write("This is some content. Scroll down to see the button.")
 
 # '위로 가기' 버튼을 HTML과 JavaScript로 구현
 st.markdown("""
