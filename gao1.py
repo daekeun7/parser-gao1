@@ -67,10 +67,10 @@ with tab1:
                     description = description.replace('\t', ' ')
             
                     st.write(f"- Title (English): {title}")
-                    st.write(f"- Title (Korean): {translate_text(title)}")
+                    st.write(f"- 제목 (한국어): {translate_text(title)}")
                     st.write(f"- Link: {link}")
                     st.write(f"- Description (English): {description}")
-                    st.write(f"- Description (Korean): {translate_text(description)}")
+                    st.write(f"- 설명 (한국어): {translate_text(description)}")
                     st.write("-" * 20)
             
             except requests.exceptions.RequestException as e:
