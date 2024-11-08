@@ -93,7 +93,9 @@ if url:
     st.write("You entered:", url)
     
     # url = input("XML 페이지 URL을 입력하세요: ")  # 사용자로부터 URL 입력 받기
-    print("-" * 20)    
+    print("-" * 20)
+
+if url:
     try:
         response = requests.get(url)
         response.raise_for_status()  # 오류 발생 시 예외 발생
