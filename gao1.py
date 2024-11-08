@@ -46,8 +46,8 @@ with tab1:
     
     if st.button("Submit"):    
         if url:            
-            st.write("▪️ Selected feed : ", selected_option)                       
-            st.write("▪️ Feed URL : ", url)                       
+            st.write("Selected feed : ", selected_option)                       
+            st.write("Feed URL : ", url)                       
             st.write("-" * 20)
             
             try:
