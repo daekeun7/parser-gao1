@@ -91,7 +91,8 @@ def extract_article_content(url):
 st.title("Parser")
 st.markdown("<h2 style='font-size: 20px;'>Powered by Goo Kim @ Digital Audit Research Team</h2>", unsafe_allow_html=True)
 
-tab1, tab2= st.tabs(['Government Accountability Office' , 'National Audit Office'])
+# tab1, tab2= st.tabs(['Government Accountability Office', 'National Audit Office'])
+tab1, tab2= st.tabs(['GAO', 'NAO'])
 
 with tab1:
     # 콤보박스 옵션 목록    
@@ -107,7 +108,7 @@ with tab1:
     selected_option = st.selectbox("Select Feed :", list(options.keys()))
     url = options[selected_option]    
     
-    if st.button("Submit"):    
+    if st.button("GAO Search"):    
         if url:            
             st.write("Selected feed : ", selected_option)
             # st.write("LastBuildDate : ", lastBuildDate)
@@ -167,7 +168,7 @@ with tab2:
     selected_option2 = st2.selectbox("Select :", list(options2.keys()))
     url2 = options2[selected_option2] 
 
-    if st2.button("Submit2"):    
+    if st2.button("NAO Search"):    
         if url2:            
             st.write("Selected filter : ", selected_option2)
             st.write("URL : ", url2)                       
