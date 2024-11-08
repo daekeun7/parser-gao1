@@ -163,7 +163,7 @@ with tab2:
     
     # 콤보박스 생성
     selected_option2 = st.selectbox("Select :", list(options2.keys()))
-    url2 = options[selected_option2] 
+    url2 = options2[selected_option2] 
 
     if st.button("Submit"):    
         if url2:            
