@@ -88,7 +88,7 @@ st.title("Streamlit Text Input Example")
 # 텍스트 입력 필드 생성
 url = st.text_input("Enter some text:", "")
 
-if user_input:
+if url:
     # 입력된 텍스트를 화면에 출력
     st.write("You entered:", url)
     
