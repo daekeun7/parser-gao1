@@ -167,7 +167,7 @@ with tab2:
     selected_option2 = st2.selectbox("Select :", list(options2.keys()))
     url2 = options2[selected_option2] 
 
-    if st2.button("Submit"):    
+    if st2.button("Submit2"):    
         if url2:            
             st.write("Selected filter : ", selected_option2)
             st.write("Feed URL : ", url)                       
