@@ -54,15 +54,18 @@ with tab1:
             try:
                 response = requests.get(url)
                 response.raise_for_status()  # 오류 발생 시 예외 발생
-            
-                soup = BeautifulSoup(response.content, 'xml')            
-                items = soup.find_all('item')
+                
+                soup = BeautifulSoup(response.content, 'xml') 
 
-                for item in items:
+                channels = soup.find_all('channel')                
+                
+                for channel in channels:
                     lastBuildDate = item.find('lastBuildDate').text.strip()
                     st.write("LastBuildDate : ", lastBuildDate)
                 st.write("Feed URL : ", url)                       
-                st.write("-" * 20)
+                st.write("-" * 20)               
+                           
+                items = soup.find_all('item')                
             
                 for item in items:
                     title = item.find('title').text.strip()
