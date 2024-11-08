@@ -88,15 +88,6 @@ st.title("GAO Parser")
 # 텍스트 입력 필드 생성
 url = st.text_input("Enter URL:", "")
 
-if url:
-    # 입력된 텍스트를 화면에 출력
-    st.write("You entered:", url)
-    
-    # url = input("XML 페이지 URL을 입력하세요: ")  # 사용자로부터 URL 입력 받기
-    print("-" * 20)
-    gkim(url)
-
-
 def gkim(url):    
     try:
         response = requests.get(url)
@@ -124,3 +115,12 @@ def gkim(url):
         print(f"Error parsing the XML: {e}")
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
+
+
+if url:
+    # 입력된 텍스트를 화면에 출력
+    st.write("You entered:", url)
+    
+    # url = input("XML 페이지 URL을 입력하세요: ")  # 사용자로부터 URL 입력 받기
+    print("-" * 20)
+    gkim(url)
