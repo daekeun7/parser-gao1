@@ -155,9 +155,11 @@ with tab1:
                 st.write(f"An unexpected error occurred: {e}")
     
         st.write("done")
+        
 with tab2:
     # 콤보박스 옵션 목록    
     options2 = {
+        'Selected filters : Reports': 'https://www.nao.org.uk/?post_type=report&s=',       
         'Selected filters : Reports': 'https://www.nao.org.uk/?post_type=report&s='       
     }
     
@@ -169,24 +171,24 @@ with tab2:
         if url2:            
             st.write("Selected filter : ", selected_option2)       
     
-        if __name__ == "__main__":
-            target_url = url2 # Replace with the actual URL
-            translator = Translator()
-        
-            article_links = extract_article_links(target_url)
-            for article in article_links:
-              st.write(f"Article Text: {article['text']}")
-              st.write(f"Article Link: {article['href']}")
-        
-              article_content = extract_article_content(article['href'])
-              if article_content:
-                  title_translation = translator.translate(article_content['title'], dest='ko')
-                  content_translation = translator.translate(article_content['content'], dest='ko')
-        
-                  st.write(f"  Title: {article_content['title']}")
-                  st.write(f"  Title(ko): {title_translation.text}")
-                  st.write(f"  Caption: {article_content['caption']}")
-                  st.write(f"  Published Time: {article_content['published_time']}")
-                  st.write(f"  Content: {article_content['content']}")
-                  st.write(f"  Content(ko): {content_translation.text}")
-                  st.write("-" * 20)
+            if __name__ == "__main__":
+                target_url = url2 # Replace with the actual URL
+                translator = Translator()
+            
+                article_links = extract_article_links(target_url)
+                for article in article_links:
+                  st.write(f"Article Text: {article['text']}")
+                  st.write(f"Article Link: {article['href']}")
+            
+                  article_content = extract_article_content(article['href'])
+                  if article_content:
+                      title_translation = translator.translate(article_content['title'], dest='ko')
+                      content_translation = translator.translate(article_content['content'], dest='ko')
+            
+                      st.write(f"  Title: {article_content['title']}")
+                      st.write(f"  Title(ko): {title_translation.text}")
+                      st.write(f"  Caption: {article_content['caption']}")
+                      st.write(f"  Published Time: {article_content['published_time']}")
+                      st.write(f"  Content: {article_content['content']}")
+                      st.write(f"  Content(ko): {content_translation.text}")
+                      st.write("-" * 20)
