@@ -160,17 +160,18 @@ with tab1:
 with tab2:
     # 콤보박스 옵션 목록    
     options2 = {
-        'Selected filters : Reports': 'https://www.nao.org.uk/?post_type=report&s=',       
-        'Selected filters2 : Reports': 'https://www.nao.org.uk/?post_type=report&s=2'       
+        'Selected filters : Reports': 'https://www.nao.org.uk/?post_type=report&s='       
     }
     
     # 콤보박스 생성
     selected_option2 = st2.selectbox("Select :", list(options2.keys()))
     url2 = options2[selected_option2] 
 
-    if st2.button("Submit2"):    
+    if st2.button("Submit"):    
         if url2:            
-            st.write("Selected filter : ", selected_option2)       
+            st.write("Selected filter : ", selected_option2)
+            st.write("Feed URL : ", url)                       
+            st.write("-" * 20)
     
             if __name__ == "__main__":
                 target_url = url2 # Replace with the actual URL
@@ -178,18 +179,26 @@ with tab2:
             
                 article_links = extract_article_links(target_url)
                 for article in article_links:
-                  st.write(f"Article Text: {article['text']}")
-                  st.write(f"Article Link: {article['href']}")
+                  # st.write(f"Article Text: {article['text']}")
+                  st.write(f"[원문링크] {article['href']}")
             
                   article_content = extract_article_content(article['href'])
                   if article_content:
                       title_translation = translator.translate(article_content['title'], dest='ko')
                       content_translation = translator.translate(article_content['content'], dest='ko')
             
-                      st.write(f"  Title: {article_content['title']}")
-                      st.write(f"  Title(ko): {title_translation.text}")
-                      st.write(f"  Caption: {article_content['caption']}")
-                      st.write(f"  Published Time: {article_content['published_time']}")
-                      st.write(f"  Content: {article_content['content']}")
-                      st.write(f"  Content(ko): {content_translation.text}")
+                      st.write(f"- Title(English)")
+                      st.write(f"{article_content['title']}")
+                      st.write(f"- 제목(한국어)")
+                      st.write(f"{title_translation.text}")
+                      st.write(f"- Caption")
+                      st.write(f"{article_content['caption']}")
+                      st.write(f"- Published Time")
+                      st.write(f"{article_content['published_time']}")
+                      st.write(f"- Content(English)")
+                      st.write(f"{article_content['content']}")
+                      st.write(f"- 내용(한국어)")
+                      st.write(f"{content_translation.text}")
                       st.write("-" * 20)
+        
+        st.write("done")
