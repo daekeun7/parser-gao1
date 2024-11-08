@@ -84,9 +84,9 @@ def translate_text(text, target_language='ko'):
 # Streamlit 앱 제목
 st.title("Parser")
 
-tabs = st.sidebar.radio("Select a tab:", ["Tab 1", "Tab 2"])
+tab1, tab2= st.tabs(['GAO' , 'NAO'])
 
-if tabs == "GAO":
+with tab1:
     # 텍스트 입력 필드 생성
     url = st.text_input("Enter URL:", "")
     
@@ -129,7 +129,7 @@ if tabs == "GAO":
     
         st.write("-" * 20)
         st.write("eod")
-elif tabs == "NAO":
+with tab2:
     st.write("Under construction")
 
 
