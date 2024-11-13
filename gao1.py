@@ -105,14 +105,14 @@ with tab1:
     }
     
     # 콤보박스 생성
-    selected_option = st.selectbox("Select Feed :", list(options.keys()))
+    selected_option = st.selectbox("Select RSS :", list(options.keys()))
     url = options[selected_option]    
     
     if st.button("GAO Search"):    
         if url:            
-            st.write("Selected feed : ", selected_option)
+            st.write("Selected RSS : ", selected_option)
             # st.write("LastBuildDate : ", lastBuildDate)
-            # st.write("Feed URL : ", url)                       
+            # st.write("RSS URL : ", url)                       
             # st.write("-" * 20)
             
             try:
@@ -126,7 +126,7 @@ with tab1:
                     lastBuildDate = channel.find('lastBuildDate').text.strip()
                     st.write("Last build date : ", lastBuildDate)
                     
-                st.write("Feed URL : ", url)                       
+                st.write("RSS URL : ", url)                       
                 st.write("-" * 20)               
                            
                 items = soup.find_all('item')            
@@ -139,13 +139,13 @@ with tab1:
                     description = description.replace('\t', ' ')
             
                     st.write(f"[원문링크] {link}")
-                    st.write(f"- Title (English)")
+                    st.write(f"- Title")
                     st.write(f"{title}")
-                    st.write(f"- 제목 (한국어)")
+                    st.write(f"- 제목")
                     st.write(f"{translate_text(title)}")
-                    st.write(f"- Description (English)")
+                    st.write(f"- Description")
                     st.write(f"{description}")
-                    st.write(f"- 설명 (한국어)")
+                    st.write(f"- 설명")
                     st.write(f"{translate_text(description)}")
                     st.write("-" * 20)
             
@@ -188,13 +188,13 @@ with tab2:
                       title_translation = translator.translate(article_content['title'], dest='ko')
                       content_translation = translator.translate(article_content['content'], dest='ko')
             
-                      st.write(f"- Title(English) : {article_content['title']}")
-                      st.write(f"- 제목(한국어) : {title_translation.text}")                      
+                      st.write(f"- Title : {article_content['title']}")
+                      st.write(f"- 제목 : {title_translation.text}")                      
                       st.write(f"- Caption : {article_content['caption']}")                      
                       st.write(f"- Published Time : {article_content['published_time']}")
-                      st.write(f"< Content(English) >")
+                      st.write(f"< Content >")
                       st.write(f"{article_content['content']}")
-                      st.write(f"< 내용(한국어) >")
+                      st.write(f"< 내용 >")
                       st.write(f"{content_translation.text}")
                       st.write("-" * 20)
         
